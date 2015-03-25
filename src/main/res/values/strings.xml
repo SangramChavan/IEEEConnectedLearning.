@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">IEEE Connected Learning</string>
+    <string name="action_settings">Exit</string>
+    <string name="appwidget_text"> Collabratec</string>
+    <string name="appwidget_text1"> Collabratec</string>
+    <string name="configure">Configure</string>
+    <string name="add_widget">Add widget</string>
+    
+</resources>
