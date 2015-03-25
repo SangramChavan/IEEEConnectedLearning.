@@ -43,7 +43,7 @@ public class Collabratec extends FrameLayout {
             webView.getSettings().setCacheMode( WebSettings.LOAD_DEFAULT );
             webView.getSettings().setCacheMode( WebSettings.LOAD_CACHE_ELSE_NETWORK );
             webView.setWebViewClient(new MyWebViewClient());
-            webView.loadUrl("https://ieee-collabratec.ieee.org");
+            webView.loadUrl("https://ieee-collabratec.ieee.org/app/home");
             addView(mRootView);
             }
 
@@ -58,7 +58,7 @@ public class Collabratec extends FrameLayout {
         public void onReceivedError(WebView view, int errorCode,
                                     String description, String failingUrl) {
             view.loadUrl("about:blank");
-            Toast.makeText(getContext(), "Network Not Available" + description, Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), "Network Not Available", Toast.LENGTH_SHORT).show();
             super.onReceivedError(view, errorCode, description, failingUrl);
         }
 
