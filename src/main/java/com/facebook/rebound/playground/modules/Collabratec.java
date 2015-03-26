@@ -47,6 +47,7 @@ public class Collabratec extends FrameLayout {
             webView.getSettings().setCacheMode( WebSettings.LOAD_CACHE_ELSE_NETWORK );
             webView.setWebViewClient(new MyWebViewClient());
             webView.loadUrl("https://ieee-collabratec.ieee.org/app/home");
+<<<<<<< HEAD
             webView.setOnKeyListener(new OnKeyListener()
             {
                 @Override
@@ -70,6 +71,8 @@ public class Collabratec extends FrameLayout {
                     return false;
                 }
             });
+=======
+>>>>>>> origin/master
             addView(mRootView);
            }
 
@@ -102,5 +105,11 @@ public class Collabratec extends FrameLayout {
                 progressBar.setVisibility(View.GONE);
                 super.onPageFinished(view, url);
             }
+
         }
+	}
+
+    }
+
+
 }
