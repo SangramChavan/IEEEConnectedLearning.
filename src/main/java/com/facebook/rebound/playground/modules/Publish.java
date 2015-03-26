@@ -2,6 +2,7 @@ package com.facebook.rebound.playground.modules;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.util.AttributeSet;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.webkit.WebSettings;
@@ -42,8 +43,31 @@ public class Publish extends FrameLayout {
         webView.setWebViewClient(new MyWebViewClient());
         Toast.makeText(context, " Loading... ", Toast.LENGTH_LONG).show();
         webView.loadUrl("http://m.ieee.org/publications_standards/index.html");
-        addView(mRootView);
+        webView.setOnKeyListener(new OnKeyListener()
+        {
+            @Override
+            public boolean onKey(View v, int keyCode, KeyEvent event)
+            {
+                if(event.getAction() == KeyEvent.ACTION_DOWN)
+                {
+                    WebView webView = (WebView) v;
 
+                    switch(keyCode)
+                    {
+                        case KeyEvent.KEYCODE_BACK:
+                            if(webView.canGoBack())
+                            {
+                                webView.goBack();
+                                return true;
+                            }
+                            break;
+                    }
+                }
+
+                return false;
+            }
+        });
+        addView(mRootView);
     }
 
     private class MyWebViewClient extends WebViewClient {

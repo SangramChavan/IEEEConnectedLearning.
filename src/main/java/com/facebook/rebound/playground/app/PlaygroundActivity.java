@@ -14,7 +14,9 @@ package com.facebook.rebound.playground.app;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.database.DataSetObserver;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -49,14 +51,14 @@ public class PlaygroundActivity extends Activity implements AdapterView.OnItemCl
   private static final List<Sample> SAMPLES = new ArrayList<Sample>();
 
   static {
-    SAMPLES.add(new Sample(Springchain.class, "Mission and Vision", "IEEE - IEEE Mission & Vision"));
+    SAMPLES.add(new Sample(Springchain.class, "About", " IEEE Mission & Vision"));
     SAMPLES.add(new Sample(Collabratec.class, "IEEE Collabratec™", "IEEE Collabratec™ is a research, collaboration and professional networking platform."));
     SAMPLES.add(new Sample(SpringScrollView.class, "Why Engineers Should Write Technical Papers ?", "IRE TRANSACTIONS  -M.S. CORRINGTON,Vice-Chairma"));
     SAMPLES.add(new Sample(Xplore.class, "IEEE Xplore® Digital Library", "The IEEE Xplore® digital library provides access to IEEE journals, transactions, letters, magazines more.."));
-    SAMPLES.add(new Sample(Computer.class, "Publish with Computer Society", "Information about CS Transactions authors, editors, reviewers, editors in chief, and guest editors."));
     SAMPLES.add(new Sample(myIEEE.class, "myIEEE ", "myIEEE is for IEEE Members customizable page containing \"gadgets\"."));
     SAMPLES.add(new Sample(Publish.class, "IEEE Publications ", "Browse IEEE publications and standards and visit the IEEE Xplore Digital Library."));
     SAMPLES.add(new Sample(DigitalToolbox.class, "IEEE Digital Tool box", "Contains tools and information to assist with article preparation and submission, the article proof review,etc."));
+    SAMPLES.add(new Sample(Computer.class, "Publish with Computer Society", "Information about CS Transactions authors, editors, reviewers, editors in chief, and guest editors."));
     SAMPLES.add(new Sample(Spectrum.class, "Spectrum", "Latest engineering, technology and science news. Articles, podcasts, videos, and webinars about robotics, electronics, computing,etc."));
     SAMPLES.add(new Sample(Safari.class, "Safari", "IEEE Computer Society users use direct access account to access Safari Books Online library."));
     SAMPLES.add(new Sample(About.class, "Contact us", "The mind of the scholar, if he would leave it large and liberal, should come in contact with other minds. -Henry"));
@@ -87,16 +89,29 @@ public class PlaygroundActivity extends Activity implements AdapterView.OnItemCl
   @Override
   public boolean onCreateOptionsMenu(Menu menu) {
     getMenuInflater().inflate(R.menu.playground, menu);
-    return true;
+
+      return true;
   }
 
   @Override
   public boolean onOptionsItemSelected(MenuItem item) {
-    int id = item.getItemId();
-    if (id == R.id.action_settings) {
-        System.exit(0);
-      return true;
-    }
+     int id = item.getItemId();
+      switch(item.getItemId())
+      {
+          case R.id.Home:
+              Intent i=new Intent(this, PlaygroundActivity.class);
+              i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+              startActivity(i);
+              break;
+          case R.id.Exit:
+              System.exit(0);
+              break;
+          case R.id.About:
+              String url = "http://goo.gl/forms/6GHr6YVtwP";
+              Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+              startActivity(browserIntent);
+              break;
+      }
     return super.onOptionsItemSelected(item);
   }
 
@@ -153,11 +168,11 @@ public class PlaygroundActivity extends Activity implements AdapterView.OnItemCl
 
   @Override
   public void onBackPressed() {
-    if (mAnimating || mCurrentExample == null) {
+        if (mAnimating || mCurrentExample == null) {
       return;
     }
     mAnimating = true;
-    mCurrentExample.hide(true, new ContainerView.Callback() {
+      mCurrentExample.hide(true, new ContainerView.Callback() {
       @Override
       public void onProgress(double progress) {
         float scale = (float) SpringUtil.mapValueFromRangeToRange(progress, 0, 1, 0.8, 1);
@@ -165,8 +180,7 @@ public class PlaygroundActivity extends Activity implements AdapterView.OnItemCl
         mRootContainer.setScaleY(scale);
         mRootContainer.setAlpha((float) progress);
       }
-
-      @Override
+        @Override
       public void onEnd() {
         mAnimating = false;
         mCurrentExample.clearCallback();

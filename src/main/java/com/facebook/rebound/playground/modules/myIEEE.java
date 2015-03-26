@@ -3,8 +3,10 @@ package com.facebook.rebound.playground.modules;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.util.AttributeSet;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.webkit.CookieManager;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
@@ -35,6 +37,7 @@ public class myIEEE extends FrameLayout {
             LayoutInflater inflater = LayoutInflater.from(context);
             mRootView = (FrameLayout) inflater.inflate(R.layout.publish, this, false);
             WebView webView = (WebView)mRootView.findViewById(R.id.webView);
+            CookieManager.getInstance().setAcceptCookie(true);
             webView.getSettings().setAllowFileAccess( true );
             webView.getSettings().setAppCacheEnabled( true );
             webView.getSettings().setJavaScriptEnabled( true );
@@ -42,8 +45,31 @@ public class myIEEE extends FrameLayout {
             webView.getSettings().setCacheMode( WebSettings.LOAD_CACHE_ELSE_NETWORK );
             webView.setWebViewClient(new MyWebViewClient());
             webView.loadUrl("https://www.ieee.org/portal/myieee/index.html");
-            addView(mRootView);
+            webView.setOnKeyListener(new OnKeyListener()
+            {
+                @Override
+                public boolean onKey(View v, int keyCode, KeyEvent event)
+                {
+                    if(event.getAction() == KeyEvent.ACTION_DOWN)
+                    {
+                        WebView webView = (WebView) v;
 
+                        switch(keyCode)
+                        {
+                            case KeyEvent.KEYCODE_BACK:
+                                if(webView.canGoBack())
+                                {
+                                    webView.goBack();
+                                    return true;
+                                }
+                                break;
+                        }
+                    }
+
+                    return false;
+                }
+            });
+            addView(mRootView);
         }
 
     private class MyWebViewClient extends WebViewClient {
@@ -57,7 +83,7 @@ public class myIEEE extends FrameLayout {
         public void onReceivedError(WebView view, int errorCode,
                                     String description, String failingUrl) {
             view.loadUrl("about:blank");
-            Toast.makeText(getContext(), "Network Not Available" + description, Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), "Network Not Available", Toast.LENGTH_SHORT).show();
             super.onReceivedError(view, errorCode, description, failingUrl);
         }
 

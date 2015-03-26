@@ -3,6 +3,7 @@ package com.facebook.rebound.playground.modules;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.util.AttributeSet;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.webkit.WebSettings;
@@ -42,6 +43,30 @@ public class DigitalToolbox extends FrameLayout{
             webView.setWebViewClient(new MyWebViewClient());
             Toast.makeText(context, " Loading... ", Toast.LENGTH_LONG).show();
             webView.loadUrl("http://m.ieee.org/publications_standards/publications/authors/author_tools.html");
+            webView.setOnKeyListener(new OnKeyListener()
+            {
+                @Override
+                public boolean onKey(View v, int keyCode, KeyEvent event)
+                {
+                    if(event.getAction() == KeyEvent.ACTION_DOWN)
+                    {
+                        WebView webView = (WebView) v;
+
+                        switch(keyCode)
+                        {
+                            case KeyEvent.KEYCODE_BACK:
+                                if(webView.canGoBack())
+                                {
+                                    webView.goBack();
+                                    return true;
+                                }
+                                break;
+                        }
+                    }
+
+                    return false;
+                }
+            });
             addView(mRootView);
         }
 
@@ -50,6 +75,13 @@ public class DigitalToolbox extends FrameLayout{
         public boolean shouldOverrideUrlLoading(WebView view, String url) {
             view.loadUrl(url);
             return true;
+        }
+        @Override
+        public void onReceivedError(WebView view, int errorCode,
+                                    String description, String failingUrl) {
+            view.loadUrl("about:blank");
+            Toast.makeText(getContext(), "Network Not Available", Toast.LENGTH_SHORT).show();
+            super.onReceivedError(view, errorCode, description, failingUrl);
         }
         @Override
         public void onPageStarted(WebView view, String url, Bitmap favicon)

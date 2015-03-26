@@ -2,7 +2,9 @@ package com.facebook.rebound.playground.modules;
 
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.os.Bundle;
 import android.util.AttributeSet;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.webkit.CookieManager;
@@ -21,10 +23,10 @@ import com.facebook.rebound.playground.R;
  */
 public class Collabratec extends FrameLayout {
 
-        private final FrameLayout mRootView;
-        ProgressBar progressBar;
-
-        public Collabratec(Context context) {
+    private final FrameLayout mRootView;
+    ProgressBar progressBar;
+    private Bundle webViewBundle;
+    public Collabratec(Context context) {
             this(context, null);
         }
 
@@ -37,15 +39,39 @@ public class Collabratec extends FrameLayout {
             LayoutInflater inflater = LayoutInflater.from(context);
             mRootView = (FrameLayout) inflater.inflate(R.layout.collabratec, this, false);
             WebView webView = (WebView)mRootView.findViewById(R.id.webView);
-            webView.getSettings().setAllowFileAccess( true );
-            webView.getSettings().setAppCacheEnabled( true );
-            webView.getSettings().setJavaScriptEnabled( true );
-            webView.getSettings().setCacheMode( WebSettings.LOAD_DEFAULT );
+            CookieManager.getInstance().setAcceptCookie(true);
+            webView.getSettings().setAllowFileAccess(true);
+            webView.getSettings().setAppCacheEnabled(true);
+            webView.getSettings().setJavaScriptEnabled(true);
+            webView.getSettings().setCacheMode(WebSettings.LOAD_DEFAULT);
             webView.getSettings().setCacheMode( WebSettings.LOAD_CACHE_ELSE_NETWORK );
             webView.setWebViewClient(new MyWebViewClient());
-            webView.loadUrl("https://ieee-collabratec.ieee.org");
+            webView.loadUrl("https://ieee-collabratec.ieee.org/app/home");
+            webView.setOnKeyListener(new OnKeyListener()
+            {
+                @Override
+                public boolean onKey(View v, int keyCode, KeyEvent event)
+                {
+                    if(event.getAction() == KeyEvent.ACTION_DOWN)
+                    {
+                        WebView webView = (WebView) v;
+
+                        switch(keyCode)
+                        {
+                            case KeyEvent.KEYCODE_BACK:
+                                if(webView.canGoBack())
+                                 {
+                                    webView.goBack();
+                                    return true;
+                                }
+                                break;
+                        }
+                    }
+                    return false;
+                }
+            });
             addView(mRootView);
-            }
+           }
 
         private class MyWebViewClient extends WebViewClient {
         @Override
@@ -58,7 +84,7 @@ public class Collabratec extends FrameLayout {
         public void onReceivedError(WebView view, int errorCode,
                                     String description, String failingUrl) {
             view.loadUrl("about:blank");
-            Toast.makeText(getContext(), "Network Not Available" + description, Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), "Network Not Available", Toast.LENGTH_SHORT).show();
             super.onReceivedError(view, errorCode, description, failingUrl);
         }
 
@@ -76,8 +102,5 @@ public class Collabratec extends FrameLayout {
                 progressBar.setVisibility(View.GONE);
                 super.onPageFinished(view, url);
             }
-
-    }
-
-
+        }
 }
