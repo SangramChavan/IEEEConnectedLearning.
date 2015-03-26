@@ -76,8 +76,5 @@ public class Collabratec extends FrameLayout {
                 progressBar.setVisibility(View.GONE);
                 super.onPageFinished(view, url);
             }
-
     }
-
-
 }
