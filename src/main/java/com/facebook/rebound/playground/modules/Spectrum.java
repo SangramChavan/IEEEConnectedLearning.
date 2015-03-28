@@ -1,12 +1,15 @@
 package com.facebook.rebound.playground.modules;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
+import android.net.Uri;
 import android.util.AttributeSet;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.webkit.CookieManager;
+import android.webkit.DownloadListener;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
@@ -53,6 +56,16 @@ public class Spectrum extends FrameLayout {
         webView.getSettings().setCacheMode( WebSettings.LOAD_CACHE_ELSE_NETWORK );
         webView.setWebViewClient(new MyWebViewClient());
         webView.loadUrl("http://spectrum.ieee.org/");
+        webView.setDownloadListener(new DownloadListener() {
+            public void onDownloadStart(String url, String userAgent,
+                                        String contentDisposition, String mimetype,
+                                        long contentLength) {
+
+                Uri uri = Uri.parse(url);
+                Intent intent = new Intent(Intent.ACTION_VIEW,uri);
+                getContext().startActivity(intent);
+            }
+        });
         webView.setOnKeyListener(new OnKeyListener()
         {
             @Override

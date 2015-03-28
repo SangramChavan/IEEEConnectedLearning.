@@ -1,13 +1,15 @@
 package com.facebook.rebound.playground.modules;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
-import android.os.Bundle;
+import android.net.Uri;
 import android.util.AttributeSet;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.webkit.CookieManager;
+import android.webkit.DownloadListener;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
@@ -25,7 +27,6 @@ public class Collabratec extends FrameLayout {
 
     private final FrameLayout mRootView;
     ProgressBar progressBar;
-    private Bundle webViewBundle;
     public Collabratec(Context context) {
             this(context, null);
         }
@@ -47,6 +48,16 @@ public class Collabratec extends FrameLayout {
             webView.getSettings().setCacheMode( WebSettings.LOAD_CACHE_ELSE_NETWORK );
             webView.setWebViewClient(new MyWebViewClient());
             webView.loadUrl("https://ieee-collabratec.ieee.org/app/home");
+            webView.setDownloadListener(new DownloadListener() {
+                public void onDownloadStart(String url, String userAgent,
+                                            String contentDisposition, String mimetype,
+                                            long contentLength) {
+
+                    Uri uri = Uri.parse(url);
+                    Intent intent = new Intent(Intent.ACTION_VIEW,uri);
+                    getContext().startActivity(intent);
+                }
+            });
             webView.setOnKeyListener(new OnKeyListener()
             {
                 @Override
@@ -88,7 +99,7 @@ public class Collabratec extends FrameLayout {
             super.onReceivedError(view, errorCode, description, failingUrl);
         }
 
-        @Override
+            @Override
             public void onPageStarted(WebView view, String url, Bitmap favicon)
             {
                 progressBar = (ProgressBar) mRootView.findViewById(R.id.progressBar);
@@ -102,9 +113,5 @@ public class Collabratec extends FrameLayout {
                 progressBar.setVisibility(View.GONE);
                 super.onPageFinished(view, url);
             }
-
         }
-	}
-
-    }
 }

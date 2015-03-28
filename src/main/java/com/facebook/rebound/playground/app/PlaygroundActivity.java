@@ -18,7 +18,6 @@ import android.content.Intent;
 import android.database.DataSetObserver;
 import android.net.Uri;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -52,7 +51,7 @@ public class PlaygroundActivity extends Activity implements AdapterView.OnItemCl
 
   static {
     SAMPLES.add(new Sample(Springchain.class, "About", " IEEE Mission & Vision"));
-    SAMPLES.add(new Sample(Collabratec.class, "IEEE Collabratec™", "IEEE Collabratec™ is a research, collaboration and professional networking platform."));
+    SAMPLES.add(new Sample(Collabratec.class, "IEEE Collabratec™", "IEEE Collabratec™|Bright Minds. Bright Ideas.\n a research, collaboration & professional networking"));
     SAMPLES.add(new Sample(SpringScrollView.class, "Why Engineers Should Write Technical Papers ?", "IRE TRANSACTIONS  -M.S. CORRINGTON,Vice-Chairma"));
     SAMPLES.add(new Sample(Xplore.class, "IEEE Xplore® Digital Library", "The IEEE Xplore® digital library provides access to IEEE journals, transactions, letters, magazines more.."));
     SAMPLES.add(new Sample(myIEEE.class, "myIEEE ", "myIEEE is for IEEE Members customizable page containing \"gadgets\"."));
@@ -70,13 +69,11 @@ public class PlaygroundActivity extends Activity implements AdapterView.OnItemCl
   private ViewGroup mRootView;
   private ContainerView mCurrentExample;
   private boolean mAnimating;
-  private LayoutInflater mInflater;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_playground);
-    mInflater = LayoutInflater.from(this);
     mRootView = (ViewGroup) findViewById(R.id.root);
     mRootContainer = findViewById(R.id.root_container);
     mListView = (ListView) findViewById(R.id.list_view);
@@ -111,6 +108,12 @@ public class PlaygroundActivity extends Activity implements AdapterView.OnItemCl
               Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
               startActivity(browserIntent);
               break;
+          case R.id.Download:
+              String url1 = "https://m.ieee.org/publications_standards/publications/authors/author_templates.html";
+              Intent browserIntent1 = new Intent(Intent.ACTION_VIEW, Uri.parse(url1));
+              startActivity(browserIntent1);
+              break;
+
       }
     return super.onOptionsItemSelected(item);
   }

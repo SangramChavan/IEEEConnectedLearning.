@@ -4,6 +4,7 @@
     <string name="app_name">IEEE Connected Learning</string>
     <string name="Exit">Exit</string>
     <string name="About">Report/Suggest</string>
+    <string name="Download">Download Templates </string>
     <string name="Home">Home</string>
 
 </resources>

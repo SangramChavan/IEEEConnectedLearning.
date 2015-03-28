@@ -1,12 +1,15 @@
 package com.facebook.rebound.playground.modules;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
+import android.net.Uri;
 import android.util.AttributeSet;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.webkit.CookieManager;
+import android.webkit.DownloadListener;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
@@ -46,6 +49,16 @@ public class Safari extends FrameLayout {
             Toast.makeText(context, " Loading... ", Toast.LENGTH_LONG).show();
             webView.setWebViewClient(new MyWebViewClient());
             webView.loadUrl("http://m.safaribooksonline.com/hd/home");
+            webView.setDownloadListener(new DownloadListener() {
+                public void onDownloadStart(String url, String userAgent,
+                                            String contentDisposition, String mimetype,
+                                            long contentLength) {
+
+                    Uri uri = Uri.parse(url);
+                    Intent intent = new Intent(Intent.ACTION_VIEW,uri);
+                    getContext().startActivity(intent);
+                }
+            });
             webView.setOnKeyListener(new OnKeyListener()
             {
                 @Override

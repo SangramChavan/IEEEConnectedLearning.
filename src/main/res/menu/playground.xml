@@ -12,6 +12,11 @@
         android:orderInCategory="100"
         android:showAsAction="never" ></item>
 
+    <item android:id="@+id/Download"
+        android:title="@string/Download"
+        android:orderInCategory="100"
+        android:showAsAction="never" ></item>
+
     <item android:id="@+id/Home"
         android:title="@string/Home"
         android:orderInCategory="100"
