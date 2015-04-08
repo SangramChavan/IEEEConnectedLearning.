@@ -45,7 +45,7 @@ public class DigitalToolbox extends FrameLayout{
             webView.getSettings().setCacheMode( WebSettings.LOAD_CACHE_ELSE_NETWORK );
             webView.setWebViewClient(new MyWebViewClient());
             Toast.makeText(context, " Loading... ", Toast.LENGTH_LONG).show();
-            webView.loadUrl("http://m.ieee.org/publications_standards/publications/authors/author_tools.html");
+            webView.loadUrl("http://m.ieee.org/publications_standards/publications/authors/authors_journals.html");
             webView.setDownloadListener(new DownloadListener() {
                 public void onDownloadStart(String url, String userAgent,
                                             String contentDisposition, String mimetype,
