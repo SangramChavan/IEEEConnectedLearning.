@@ -17,7 +17,7 @@
   - Frequently asked questions
 7. Publish with Computer Society
 8. Spectrum
-9. Safari Books Online for Library (Computer Society members)
+9. Safari Direct Access (Solution: To access the mobile feature no longer required to follow steps as prescribed on http://www.computer.org/web/education/safari#)
 10. Download Templates
 
 ## Future Scope 
