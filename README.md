@@ -18,7 +18,7 @@
   - Frequently asked questions
 7. Publish with Computer Society
 8. Spectrum
-9. Safari Direct Access (Easy Access: To access the mobile feature no longer required to follow steps as prescribed on http://www.computer.org/web/education/safari#)
+9. Safari Direct Access (Computer Society members: To access the mobile feature no longer required to follow any steps.)
 10. Download Templates
 
 ## Future Scope 
