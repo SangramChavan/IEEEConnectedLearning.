@@ -1,5 +1,4 @@
 # IEEE-Connected-Learning
-## <a href="https://drive.google.com/file/d/0By8u5YwxHGpcSnAwU2JidEtUaHM/view?usp=sharing">Downlaod Apk </a>
 ## Features:
 
 1. Social Network - <a href="https://ieee-collabratec.ieee.org">IEEE Collabratec™ </a>
