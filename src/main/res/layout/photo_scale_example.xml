@@ -11,6 +11,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/imageView2"
         android:src="@drawable/r10in"
+        android:layout_toEndOf="@+id/imageView5"
         android:layout_above="@+id/imageView3"
         android:layout_alignParentStart="true" />
 
@@ -19,17 +20,17 @@
         android:layout_height="wrap_content"
         android:id="@+id/imageView3"
         android:src="@drawable/cslogo"
-        android:layout_centerHorizontal="true"
-        android:layout_above="@+id/textView5" />
+        android:layout_above="@+id/textView5"
+        android:layout_alignEnd="@+id/textView5" />
 
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/imageView4"
         android:src="@drawable/madc_logo"
-        android:layout_alignParentEnd="true"
+        android:layout_alignTop="@+id/imageView5"
         android:layout_toEndOf="@+id/imageView5"
-        android:layout_alignTop="@+id/imageView5" />
+        android:padding="5dp"/>
 
     <ImageView
         android:layout_width="wrap_content"
@@ -37,16 +38,17 @@
         android:id="@+id/imageView5"
         android:src="@drawable/logoieeepu"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:padding="-10dp"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="\n Contact: \n IEEE Computer Society \n 10662 Los Vaqueros Circle \n P.O. Box 3014 Los Alamitos,\n CA 90720-1264 USA \n Phone: +1 714 821 8380 \n Fax: +1 714 821 4010 \n Publications Orders: \n +1 800 272 6657 \n Email: help@computer.org \n App related email:\n csangram@computer.org"
+        android:text="\n Contact: \n IEEE Computer Society \n 10662 Los Vaqueros Circle \n P.O. Box 3014 Los Alamitos,\n CA 90720-1264 USA \n Phone: +1 714 821 8380 \n Fax: +1 714 821 4010 \n Publications Orders: \n +1 800 272 6657 \n Email: help@computer.org \n Developer: Sangram Chavan \n Email: csangram@computer.org\n"
         android:id="@+id/textView5"
         android:textColor="@android:color/black"
-        android:layout_centerVertical="true"
-        android:layout_alignStart="@+id/imageView3" />
+        android:layout_above="@+id/imageView4"
+        android:layout_centerHorizontal="true" />
 
 </RelativeLayout>

@@ -17,6 +17,11 @@
         android:orderInCategory="100"
         android:showAsAction="never" ></item>
 
+    <item android:id="@+id/tv"
+        android:title="@string/tv"
+        android:orderInCategory="100"
+        android:showAsAction="never" ></item>
+
     <item android:id="@+id/Home"
         android:title="@string/Home"
         android:orderInCategory="100"

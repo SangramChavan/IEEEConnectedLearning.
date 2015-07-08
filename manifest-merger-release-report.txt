@@ -64,7 +64,7 @@ ADDED from AndroidManifest.xml:18:5
 		ADDED from AndroidManifest.xml:23:9
 	android:hardwareAccelerated
 		ADDED from AndroidManifest.xml:20:9
-activity#com.facebook.rebound.playground.app.PlaygroundActivity
+activity#org.ieee.connected.learning.app.LearningActivity
 ADDED from AndroidManifest.xml:24:9
 	android:screenOrientation
 		ADDED from AndroidManifest.xml:27:13
@@ -84,7 +84,7 @@ category#android.intent.category.LAUNCHER
 ADDED from AndroidManifest.xml:32:17
 	android:name
 		ADDED from AndroidManifest.xml:32:27
-receiver#com.facebook.rebound.androidplayground.IEEEConnect
+receiver#org.ieee.connected.edu.IEEEConnect
 ADDED from AndroidManifest.xml:36:9
 	android:name
 		ADDED from AndroidManifest.xml:36:19
@@ -100,7 +100,7 @@ ADDED from AndroidManifest.xml:41:13
 		ADDED from AndroidManifest.xml:43:17
 	android:name
 		ADDED from AndroidManifest.xml:42:17
-receiver#com.facebook.rebound.androidplayground.CS
+receiver#org.ieee.connected.edu.CS
 ADDED from AndroidManifest.xml:45:9
 	android:name
 		ADDED from AndroidManifest.xml:45:19
