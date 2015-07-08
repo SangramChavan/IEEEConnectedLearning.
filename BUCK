@@ -7,7 +7,7 @@ keystore(
 android_resource(
   name = 'res',
   res = 'src/main/res',
-  package = 'com.facebook.rebound.playground',
+  package = 'org.ieee.connected.learning',
   visibility = ['//rebound-android-playground:src'],
 )
 
